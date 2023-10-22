@@ -24,9 +24,11 @@ export default {
         }
     },
     methods:{
-        closed(){
-            
-        }
+        // save() {
+        //     axios.put('api/subject/'+this.id, { name: this.name }).then(res => {
+        //         alert('cap nhat thanh cong')
+        //     })
+        // }
     }
 }
 </script>

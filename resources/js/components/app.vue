@@ -1,7 +1,9 @@
 <template>
     <div>
         <CompHerder></CompHerder>
-        <CompQuiz></CompQuiz>
+        <div class="max-w-7xl mx-auto">
+            <CompSubject></CompSubject>
+        </div>
         <CompFooter></CompFooter>
     </div>
 </template>

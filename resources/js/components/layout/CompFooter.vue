@@ -1,5 +1,5 @@
 <template>
-    <section class="max-w-7xl mx-auto border-t-2 my-5">
+    <section class="mx-auto border-t-2 my-5">
         <div class="grid grid-cols-12">
             <div class="col-span-3 flex justify-center items-center space-x-4">
                 <p class="text-black font-semibold text-2xl">VUEJS QUIZ</p>

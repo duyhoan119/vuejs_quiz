@@ -1,5 +1,5 @@
 <template>
-    <section class="max-w-7xl mx-auto border-b-2 mb-5">
+    <section class="mx-auto border-b-2 mb-5">
         <div class="flex justify-between items-center py-1">
             <div class="flex justify-center items-center space-x-4">
                 <p class="text-black font-semibold text-2xl">VUEJS QUIZ</p>

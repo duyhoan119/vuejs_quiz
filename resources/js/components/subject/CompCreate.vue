@@ -7,7 +7,8 @@
                 <input class="border border-solid rounded-md px-2" id="name" type="text" v-model="name"
                     placeholder="enter subject name ...">
                 <div class="space-x-4">
-                    <button class="border border-solid rounded-full px-2" type="button">Submit</button>
+                    <button v-on:click="creareNew()" class="border border-solid rounded-full px-2"
+                        type="button">Submit</button>
                     <button class="border border-solid rounded-full px-2" type="button">Cancle</button>
                 </div>
             </form>
@@ -16,12 +17,19 @@
 </template>
 
 <script>
-    export default {
-        name:'comp-edit',
-        data() {
-            return {
-                name:''
-            }
-        },
+export default {
+    name: 'comp-create',
+    data() {
+        return {
+            name: ''
+        }
+    },
+    methods: {
+        creareNew() {
+            axios.post('api/subject', { name: this.name }).then(res => {
+                alert('tao thanh cong')
+            })
+        }
     }
+}
 </script>
