@@ -1,14 +1,15 @@
 <template>
     <div>
-        <CompHerder></CompHerder>
+        <CompHerder />
         <div class="max-w-7xl mx-auto">
-            <CompSubject></CompSubject>
+            <test />
         </div>
-        <CompFooter></CompFooter>
+        <CompFooter />
     </div>
 </template>
 
 <script>
+import test from './test/test.vue';
 import CompHerder from './layout/CompHerder.vue';
 import CompFooter from './layout/CompFooter.vue';
 import CompSubject from './subject/ListComp.vue';
@@ -24,7 +25,8 @@ export default {
         CompHerder,
         CompFooter,
         CompSubject,
-        CompQuiz
+        CompQuiz,
+        test
     },
     computed: {
         showComp() {

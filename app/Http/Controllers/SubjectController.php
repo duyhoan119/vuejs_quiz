@@ -9,12 +9,12 @@ class SubjectController extends Controller
 {
     public function getAll()
     {
-        return Subject::all();
+        return Subject::query()->with('quiz')->get();
     }
 
     public function findId($id)
     {
-        return Subject::find($id);
+        return Subject::query()->with('quiz')->where('id',$id)->get();
     }
 
     public function store(Request $request)

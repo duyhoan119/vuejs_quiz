@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
-class QuizController extends Controller
+class AnswerController extends Controller
 {
-    public function getAll()
-    {
-        return Quiz::query()->with(['quesion'])->get();
-    }
-
     public function findId($id)
     {
-        return Quiz::query()->with(['quesion','quesion.answer'])->where('id',$id)->first();
+        return Answer::find($id);
     }
 
     public function store(Request $request)
     {
         $createData = $request->all();
 
-        if (Quiz::create($createData)) {
+        if (Answer::create($createData)) {
             return true;
         }
         return false;
@@ -30,8 +25,8 @@ class QuizController extends Controller
     public function save(Request $request, int $id)
     {
         $saveData = $request->all();
-        $quiz = $this->findId($id);
-        if ($quiz->update($saveData)) {
+        $answer = $this->findId($id);
+        if ($answer->update($saveData)) {
             return true;
         }
         return false;
@@ -39,7 +34,7 @@ class QuizController extends Controller
 
     public function destroy($id)
     {
-        if (Quiz::destroy($id)) {
+        if (Answer::destroy($id)) {
             return true;
         }
         return false;

@@ -6,6 +6,10 @@
                 <label for="name">Name</label>
                 <input class="border border-solid rounded-md px-2" id="name" type="text" v-model="name"
                     placeholder="enter subject name ...">
+                <label for="name">Subject</label>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
                 <div class="space-x-4">
                     <button class="border border-solid rounded-full px-2" type="button">Submit</button>
                     <button class="border border-solid rounded-full px-2" type="button">Cancle</button>
@@ -16,12 +20,23 @@
 </template>
 
 <script>
-    export default {
-        name:'comp-edit',
-        data() {
-            return {
-                name:''
-            }
-        },
+export default {
+    name: 'comp-edit',
+    data() {
+        return {
+            subjectId,
+            name: ''
+        }
+    },
+    computed: {
+
+    },
+    methods: {
+        creareNew() {
+            axios.post('api/quiz', { name: this.name, subjectId: this.subjectId }).then(res => {
+                alert('tao thanh cong')
+            })
+        }
     }
+}
 </script>

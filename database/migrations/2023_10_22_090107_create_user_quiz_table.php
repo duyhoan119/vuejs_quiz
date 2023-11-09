@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizs');
-            $table->enum('is_corect',[0,1]);
+            $table->json_encode('quesion_answered');
             $table->double('score',15,2);
             $table->timestamps();
         });

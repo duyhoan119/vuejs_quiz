@@ -13,7 +13,7 @@
                 <tbody>
                     <tr v-for="subject in subjects" class="border-b-2 text-center">
                         <td>{{subject.id}}</td>
-                        <td>{{subject.name}}</td>
+                        <td v-on:click="showDetail(subject.quiz)">{{subject.name}}</td>
                         <td class="space-x-2 my-2">
                             <button v-on:click="changeIsAction()" class="border border-solid rounded-md px-2 bg-yellow-500">Edit</button>
                             <button v-on:click="destroy(subject.id)" class="border border-solid rounded-md px-2 bg-red-500">Delete</button>
@@ -21,11 +21,10 @@
                     </tr>
                 </tbody>
             </table>
-    
         </div>
         <div class="col-span-4">
              <CompCreate v-if="isAction"></CompCreate>
-             <CompEdit v-else></CompEdit>
+             <CompEdit v-on:close="close()" v-bind:title="title" v-else></CompEdit>
             
         </div>
     </div>
@@ -43,18 +42,22 @@ export default {
     data() {
         return {
             subjects:[],
-            isAction: true
+            quizs:[],
+            title:"edit title",
+            isAction: true,
+            isShowDetail:true
         }
     },
     created(){
-        axios.get('api/subject').then(res=>{
+        this.getAll
+    },computed:{
+       
+    },methods:{
+        getAll(){
+            axios.get('api/subject').then(res=>{
             this.subjects = res.data;
         })
-    },computed:{
-        Action(){
-
-        }
-    },methods:{
+        },
         changeIsAction(){
            this.isAction = !this.isAction
         },
@@ -63,6 +66,12 @@ export default {
             axios.delete(url).then(res=>{
             this.subjects = res.data;
         })
+        },
+         showDetail(quiz){
+            this.quizs = quiz
+        },
+        close(){
+            this.isAction = !this.isAction
         }
     }
 }

@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserQuiz extends Model
 {
     use HasFactory;
-
+    public $table = "user_quiz";
     protected $fillable = [
         'user_id',
         'quiz_id',
-        'is_corect',
+        'quesion_answered',
         'score'
     ];
 
