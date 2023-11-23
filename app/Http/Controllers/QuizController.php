@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
     public function getAll()
     {
-        return Quiz::query()->with(['quesion'])->get();
+        return Quiz::query()->with(['quesion', 'subject'])->get();
     }
 
     public function findId($id)
     {
-        return Quiz::query()->with(['quesion','quesion.answer'])->where('id',$id)->first();
+        return Quiz::query()->with(['quesion', 'quesion.answer'])->where('id', $id)->first();
     }
-
+    public function findBySubjectId($id)
+    {
+        return Quiz::query()->select('id', 'subject_id','name')->with('subject')->where('subject_id', $id)->get();
+    }
     public function store(Request $request)
     {
         $createData = $request->all();

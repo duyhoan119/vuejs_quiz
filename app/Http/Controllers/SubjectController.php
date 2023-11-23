@@ -14,7 +14,7 @@ class SubjectController extends Controller
 
     public function findId($id)
     {
-        return Subject::query()->with('quiz')->where('id',$id)->get();
+        return Subject::query()->select('id','name')->with('quiz')->where('id',$id)->first();
     }
 
     public function store(Request $request)

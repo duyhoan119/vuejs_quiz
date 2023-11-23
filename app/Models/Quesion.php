@@ -11,11 +11,17 @@ class Quesion extends Model
 
     protected $fillable = [
         'quiz_id',
-        'content'
+        'content',
+        'point'
     ];
 
     public function answer()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
     }
 }

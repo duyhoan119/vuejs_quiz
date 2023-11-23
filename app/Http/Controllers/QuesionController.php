@@ -7,9 +7,24 @@ use Illuminate\Http\Request;
 
 class QuesionController extends Controller
 {
+    public function index()
+    {
+        return Quesion::query()->select(['id', 'quiz_id', 'content', 'point'])->with('quiz')->get();
+    }
+
     public function findId($id)
     {
         return Quesion::find($id);
+    }
+
+    public function findByQuizId($id)
+    {
+        return Quesion::query()->select('id', 'quiz_id', 'content', 'point')->with('quiz')->where('quiz_id', $id)->get();
+    }
+
+    public function findByQuizedId($id)
+    {
+        return Quesion::query()->select('id', 'quiz_id', 'content', 'point')->with('answer')->where('quiz_id', $id)->get();
     }
 
     public function store(Request $request)
@@ -17,9 +32,9 @@ class QuesionController extends Controller
         $createData = $request->all();
 
         if (Quesion::create($createData)) {
-            return true;
+            return json_decode('tao thanh cong');
         }
-        return false;
+        return json_decode('taoj that bai');
     }
 
     public function save(Request $request, int $id)

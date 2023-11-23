@@ -15,8 +15,13 @@ class UserQuiz extends Model
         'quesion_answered',
         'score'
     ];
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
 
-    public function quesionAnswer(){
+    public function quesionAnswer()
+    {
         return $this->hasMany(QuesionAnsered::class);
     }
 }

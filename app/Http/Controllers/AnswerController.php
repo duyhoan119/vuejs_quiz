@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
+    public function index()
+    {
+        return Answer::query()->select(['id','quesion_id','content','is_corect'])->with('quesion')->get();
+    }
     public function findId($id)
     {
         return Answer::find($id);
@@ -17,9 +21,9 @@ class AnswerController extends Controller
         $createData = $request->all();
 
         if (Answer::create($createData)) {
-            return true;
+            return json_decode('tao thanh cong');
         }
-        return false;
+        return json_decode('tao that bai');
     }
 
     public function save(Request $request, int $id)

@@ -7,9 +7,12 @@
             </div>
             <div>
                 <ul class="flex items-center space-x-4">
-                    <li>Home</li>
-                    <li>Subject</li>
-                    <li>Class</li>
+                    <li v-on:click="changeView('home')">Home</li>
+                    <li v-on:click="changeView('subject')">Subject</li>
+                    <li v-on:click="changeView('quiz')">Quiz</li>
+                    <li v-on:click="changeView('quesion')">Quesion</li>
+                    <li v-on:click="changeView('answer')">Answer</li>
+                    <li v-on:click="changeView('history')">History</li>
                 </ul>
             </div>
             <div class="flex items-center space-x-4">
@@ -24,9 +27,14 @@
 <script>
 export default {
     name: 'comp-header',
+    emits:['change-view-event'],
     data() {
         return {
-
+        }
+    },
+    methods:{
+        changeView(key){
+            this.$emit('changeViewEvent',key)
         }
     }
 }

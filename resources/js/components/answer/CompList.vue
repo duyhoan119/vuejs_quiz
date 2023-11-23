@@ -1,23 +1,23 @@
 <template>
-    <p>Quesion list</p>
+    <p>Answer list</p>
     <div class="grid grid-cols-12 space-x-4">
         <div class="col-span-8">
             <table class="min-w-full">
                 <thead>
                     <tr class="border-b-2 text-center">
                         <th>ID</th>
-                        <th>Quiz name</th>
+                        <th>Quesion name</th>
                         <th>Content</th>
-                        <th>Point</th>
+                        <th>Is Corect</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="quesion in quesions" class="border-b-2 text-center">
-                        <td>{{ quesion.id }}</td>
-                        <td>{{ quesion.quiz.name }}</td>
-                        <td>{{ quesion.content }}</td>
-                        <td>{{ quesion.point }}</td>
+                    <tr v-for="answer in answers" class="border-b-2 text-center">
+                        <td>{{ answer.id }}</td>
+                        <td class="line-clamp-2">{{ answer.quesion.content }}</td>
+                        <td>{{ answer.content }}</td>
+                        <td>{{ answer.is_corect == 1?'True':'' }}</td>
                         <td class="space-x-2 my-2">
                             <button class="border border-solid rounded-md px-2 bg-yellow-500">Edit</button>
                             <button class="border border-solid rounded-md px-2 bg-red-500">Delete</button>
@@ -35,36 +35,20 @@
 
 <script>
 export default {
-    name: 'Comp-list-quesion',
+    name: 'comp-list-answer',
     data() {
         return {
-            quesions: []
+            answers: [],
+            
         }
-    },
-    props: {
-        id: {
-            type: Number,
-            required: false
-        }
-    },
-    created() {
-        if (this.id) {
-            this / this.findByQuiz
-        } else {
-            this.getQuesion()
-        }
+    }, created() {
+        this.getAnswer()
     }, methods: {
-        getQuesion() {
-            axios.get('api/quesion').then(res => {
-                this.quesions = res.data
-            })
-        },
-        findByQuiz() {
-            axios.get('api/quesion/quiz' + this.id).then(res => {
-                this.quesions = res.data
+        getAnswer() {
+            axios.get('api/answer').then(res => {
+                this.answers = res.data
             })
         }
-    },
+    }
 }
-
 </script>

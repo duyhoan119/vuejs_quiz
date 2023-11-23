@@ -14,4 +14,8 @@ class Answer extends Model
         'content',
         'is_corect'
     ];
+
+    public function quesion(){
+        return $this->belongsTo(Quesion::class);
+    }
 }

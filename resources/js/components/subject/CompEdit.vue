@@ -20,7 +20,7 @@ export default {
     name: 'comp-create',
     data() {
         return {
-            name: '23'
+            name: ''
         }
     },
     props:{
@@ -33,13 +33,12 @@ export default {
         cancle(){
             let data=this.name;
             this.$emit('close',data);
+        },
+        save() {
+            axios.put('api/subject/'+this.id, { name: this.name }).then(res => {
+                alert('cap nhat thanh cong')
+            })
         }
-
-        // save() {
-        //     axios.put('api/subject/'+this.id, { name: this.name }).then(res => {
-        //         alert('cap nhat thanh cong')
-        //     })
-        // }
     }
 }
 </script>

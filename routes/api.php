@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuesionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserQuizController;
@@ -31,14 +33,36 @@ Route::prefix('subject')->group(function(){
 Route::prefix('quiz')->group(function(){
     Route::get('/',[QuizController::class,'getAll']);
     Route::get('/{id}',[QuizController::class,'findId']);
+    Route::get('subject/{id}',[QuizController::class,'findBySubjectId']);
     Route::post('/',[QuizController::class,'store']);
     Route::put('/{id}',[QuizController::class,'save']);
     Route::delete('/{id}',[QuizController::class,'destroy']);
-    Route::prefix('quesion')->group(function(){
-        Route::delete('/{id}',[SubjectController::class,'destroy']);
-    });
 });
+
+Route::prefix('quesion')->group(function(){
+    Route::get('/',[QuesionController::class,'index']);
+    Route::get('/{id}',[QuesionController::class,'findId']);
+    Route::get('quiz/{id}',[QuesionController::class,'findByQuizId']);
+    Route::get('quized/{id}',[QuesionController::class,'findByQuizedId']);
+    Route::post('/',[QuesionController::class,'store']);
+    Route::put('/{id}',[QuesionController::class,'save']);
+    Route::delete('/{id}',[QuesionController::class,'destroy']);
+});
+
+Route::prefix('answer')->group(function(){
+    Route::get('/',[AnswerController::class,'index']);
+    Route::get('/{id}',[AnswerController::class,'findId']);
+    Route::post('/',[AnswerController::class,'store']);
+    Route::put('/{id}',[AnswerController::class,'save']);
+    Route::delete('/{id}',[AnswerController::class,'destroy']);
+});
+
 Route::prefix('quized')->group(function(){
+    Route::get('/',[UserQuizController::class,'index']);
+    Route::post('/',[UserQuizController::class,'store']);
+});
+
+Route::prefix('history')->group(function(){
     Route::get('/',[UserQuizController::class,'index']);
     Route::post('/',[UserQuizController::class,'store']);
 });
